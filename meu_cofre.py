@@ -2,25 +2,49 @@ print('Finance Fragment')
 print('SEJA BEM VINDO AO SOFTWARE DE ORGANIZAÇÃO FINANCEIRO MAIS SIMPLES E FUNCIONAL.')
 #ENTRADAS
 nome=input('Qual é o seu nome : ')
-receita=float(input('Informe o valor de pelo menos uma receita : '))
-despesa=float(input('informe o valor de uma despesa : '))
-#PROCESSO
-saldo=receita-despesa
-#SAÍDA 
-print('='*30)
-print('Finance Fragment')
-print('='*30)
-print(f'Usuário: {nome}')
-print('-'*30)
-print(f'Receita : R$ {receita:.2f}')
-print(f'Despesa : R$ {despesa:.2f}')
-print('-'*30)
-print(f'Saldo Disponível : R$ {saldo:.2f}')
-if saldo >0:
-    print('Saldo positivo : ✅  Parabéns, você está com um bom saldo.')
-elif saldo == 0:
-    print('Saldo zero : Você zerou seu saldo.')
-else:
-    print('Saldo negativo : Atenção você está no vermelho ! ')
 
-print('='*30)
+#PROCESSO/Saída
+
+while True:
+    print('''
+    Opções Finance-Fragment
+    1-Calcular Saldo
+    2-Sair
+''')
+    opcao=input('Digite o número da opção : ')
+    if opcao=='1':
+        receita=float(input('Informe o valor da receita : '))
+        despesa=float(input('Informe o valor da despesa : '))
+
+        saldo=receita-despesa
+
+        print(f'''
+                Finance Fragment
+        --------------------------------------
+        Usuário: {nome}
+        --------------------------------------  
+        Receita : R$ {receita:.2f}
+        --------------------------------------
+        Despesa : R$ {despesa:.2f}
+        --------------------------------------
+        Saldo Disponível : R$ {saldo:.2f}
+        --------------------------------------
+        ''')
+        if saldo >0:
+            print('Saldo positivo : ✅  Parabéns, você está com um bom saldo.')
+        elif saldo == 0:
+            print('Saldo zero : Você zerou seu saldo.')
+        else:
+            print('Saldo negativo : Atenção você está no vermelho ! ')
+
+        print('='*60)
+        input()
+    elif opcao=='2':
+        print('Encerrando Finance-Fragment ...')
+        break
+
+    else:
+        print('Opção inválida.')
+        input()
+    
+
