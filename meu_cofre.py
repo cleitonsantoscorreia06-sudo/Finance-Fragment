@@ -34,9 +34,9 @@ while True:
         if saldo >0:
             print('Saldo positivo : ✅  Parabéns, você está com um bom saldo.')
         elif saldo == 0:
-            print('Saldo zero : Você zerou seu saldo.')
+            print('Saldo zero : ❌ Você zerou seu saldo.')
         else:
-            print('Saldo negativo : Atenção você está no vermelho ! ')
+            print('Saldo negativo :⚠️  Atenção você está no vermelho ! ')
 
         print('='*60)
         input()
@@ -47,5 +47,7 @@ while True:
     else:
         print('Opção inválida.')
         input()
+    
+
     
 
