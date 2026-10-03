@@ -5,49 +5,68 @@ nome=input('Qual é o seu nome : ').strip().title()
 
 #PROCESSO/Saída
 
-while True:
-    print('''
-    Opções Finance-Fragment
-    1-Calcular Saldo
-    2-Sair
+receitas=[]
+despesas=[]
+
+
+while True :
+    print('''   
+        Opções Finance-Fragment
+            0-Encerrar
+            1-Adicionar Despesas
+            2-Adicionar Receitas
+            3-Relatório Financeiro
+
 ''')
-    opcao=input('Digite o número da opção : ').strip()
-    if opcao=='1':
-        receita=float(input('Informe o valor da receita : '))
-        despesa=float(input('Informe o valor da despesa : '))
-
-        saldo=receita-despesa
-
-        print(f'''
-                Finance Fragment
-        --------------------------------------
-        Usuário: {nome}
-        --------------------------------------  
-        Receita : R$ {receita:.2f}
-        --------------------------------------
-        Despesa : R$ {despesa:.2f}
-        --------------------------------------
-        Saldo Disponível : R$ {saldo:.2f}
-        --------------------------------------
-        ''')
-        print('='*60)
-        if saldo >0:
-            print('Saldo positivo : ✅  Parabéns, você está com um bom saldo.')
-        elif saldo == 0:
-            print('Saldo zero : ❌ Você zerou seu saldo.')
-        else:
-            print('Saldo negativo :⚠️  Atenção você está no vermelho ! ')
-
-        print('='*60)
+    
+    opcao=input("Digite o número da opção escolhida : ").strip()
+    if opcao == "1":
+        valor=float(input("Valor  da Despesa R$ : "))
+        despesas.append(valor)
+        print(f"Total de Despesas R$ : {sum(despesas):.2f} ")
         input()
-    elif opcao=='2':
-        print('Encerrando Finance-Fragment ...')
+
+    elif opcao == "2":
+        valor=float(input("Valor Da Receita R$ : "))
+        receitas.append(valor)
+        print(f"Total de Receitas R$ : {sum(receitas)}")
+        input()
+
+    elif opcao == "3":
+        if len(receitas) == 0 and len(despesas) == 0:
+            print('''
+            Você não adicionou nenhuma receita ou despesas.
+            Para ver o relatório acrescente ao menos uma receita ou despesa !
+            ''')
+            input()
+        else:
+            saldo=sum(receitas)-sum(despesas)
+            print("."*20,"Relatório Financeiro","."*20)
+            print("-"*60)
+            print(f"Total de Receitas R$ : {sum(receitas):.2f}")
+            print("-"*60)
+            print(f"Total de Despesas R$ : {sum(despesas):.2f}")
+            print("-"*60)
+            print(f"Saldo final R$ : {saldo:.2f}")
+            print("-"*60)
+            
+
+            if saldo >0:
+                    print('Saldo positivo : ✅  Parabéns, você está com um bom saldo.')
+            elif saldo == 0:
+                print('Saldo zero : ❌ Você zerou seu saldo.')
+            else:
+                print('Saldo negativo :⚠️  Atenção você está no vermelho ! ')
+            print("."*60)
+            input()
+    
+    elif opcao == "0" :
+        print("Finance-Fragment Fechado.")
         break
 
     else:
-        print('Opção inválida.')
+        print("Opção inválida .")
         input()
-    
 
     
 
