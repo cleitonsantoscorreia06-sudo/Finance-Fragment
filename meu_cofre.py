@@ -21,9 +21,16 @@ while True :
     
     opcao=input("Digite o número da opção escolhida : ").strip()
     if opcao == "1":
-        valor=float(input("Valor  da Despesa R$ : "))
-        despesas.append(valor)
-        print(f"Total de Despesas R$ : {sum(despesas):.2f} ")
+        descricao=input("Descrição : ").strip()
+        valor=float(input("Valor R$ : "))
+        categoria=input("Categoria : ").strip().lower()
+        despesas.append({
+            "Descrição" : descricao,
+            "Valor" : valor,
+            "categoria" : categoria
+        })
+        
+
         input()
 
     elif opcao == "2":
@@ -35,28 +42,44 @@ while True :
     elif opcao == "3":
         if len(receitas) == 0 and len(despesas) == 0:
             print('''
-            Você não adicionou nenhuma receita ou despesas.
-            Para ver o relatório acrescente ao menos uma receita ou despesa !
+Você não adicionou nenhuma receita ou despesas.
+Para ver o relatório acrescente ao menos uma receita ou despesa !
             ''')
             input()
         else:
-            saldo=sum(receitas)-sum(despesas)
+            total_despesas=0
+            for d in despesas:
+                total_despesas+=d["Valor"]
+            saldo=sum(receitas)-total_despesas
+
             print("."*20,"Relatório Financeiro","."*20)
             print("-"*60)
             print(f"Total de Receitas R$ : {sum(receitas):.2f}")
             print("-"*60)
-            print(f"Total de Despesas R$ : {sum(despesas):.2f}")
+            print(f"Total de Despesas R$ : {total_despesas:.2f}")
             print("-"*60)
             print(f"Saldo final R$ : {saldo:.2f}")
+            print("-"*60)
+
+            por_categoria= {}
+            for d in despesas:
+                cat=d["categoria"]
+                if cat in por_categoria:
+                    por_categoria[cat] += d["Valor"]
+                else:
+                    por_categoria[cat]=d["Valor"]
+            for cat , valor in por_categoria.items():
+                print(f"{cat} : R$ {valor:.2f} ")
+
             print("-"*60)
             
 
             if saldo >0:
-                    print('Saldo positivo : ✅  Parabéns, você está com um bom saldo.')
+                    print(f'Saldo positivo : ✅  Parabéns {nome}, você está com um bom saldo.')
             elif saldo == 0:
-                print('Saldo zero : ❌ Você zerou seu saldo.')
+                print(f'Saldo zero : ❌ {nome} Você zerou seu saldo.')
             else:
-                print('Saldo negativo :⚠️  Atenção você está no vermelho ! ')
+                print(f'Saldo negativo :⚠️  {nome}, atenção você está no vermelho ! ')
             print("."*60)
             input()
     
