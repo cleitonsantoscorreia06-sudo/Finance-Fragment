@@ -14,7 +14,7 @@ while True :
             1-Adicionar Despesas
             2-Adicionar Receitas
             3-Relatório Financeiro
-
+            4-Editar Despesas
 ''')
     
     opcao=input("Digite o número da opção escolhida : ").strip()
@@ -28,6 +28,9 @@ while True :
 
     elif opcao == "3":
         funcoes.mostrar_relatorio()
+        input()
+    elif opcao=="4":
+        funcoes.editar_despesas()
         input()
     
     elif opcao == "0" :

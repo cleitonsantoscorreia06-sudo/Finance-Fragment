@@ -9,7 +9,7 @@ def adicionar_despesas():
         dados.despesas.append({
             "Descrição" : descricao,
             "Valor" : valor,
-            "categoria" : categoria
+            "Categoria" : categoria
         })
         break
     
@@ -20,7 +20,7 @@ def adicionar_receita():
             try:
                 valor=float(input("Valor Da Receita R$ : "))
                 dados.receitas.append(valor)
-                print(f"Total de Receitas R$ : {sum(dados.receitas)}")
+                print(f"Total de Receitas R$ : {sum(dados.receitas):.2f}")
                 break
             except ValueError:
                  print("Digite somente números !")
@@ -32,7 +32,7 @@ def mostrar_relatorio():
     Você não adicionou nenhuma receita ou despesas.
     Para ver o relatório acrescente ao menos uma receita ou despesa !
                 ''')
-                input()
+
 
     else:
             total_despesas=0
@@ -50,7 +50,7 @@ def mostrar_relatorio():
 
             por_categoria= {}
             for d in dados.despesas:
-                cat=d["categoria"]
+                cat=d["Categoria"]
                 if cat in por_categoria:
                     por_categoria[cat] += d["Valor"]
                 else:
@@ -68,3 +68,56 @@ def mostrar_relatorio():
             else:
                 print(f'Saldo negativo :⚠️  {dados.nome}, atenção você está no vermelho ! ')
             print("."*60)
+
+def editar_despesas():
+     if len(dados.despesas) == 0:
+         print("Sem despesas para editar .")
+         return
+
+
+     else:
+        for i , item in enumerate(dados.despesas):
+            print(f"Indice -> {i} | dicionário -> {item}")
+            
+
+     
+        while True:
+            try:
+                indice=int(input("Indice -> "))
+                if indice < 0 or indice >= len(dados.despesas):
+                     print("Indice inválido.")
+                     continue
+                campo=input("Qual informação ? ").strip()
+                if campo.lower() == "valor":
+                     campo="Valor"            
+                     informacao=float(input("Digite a informação que deseja alterar : "))
+
+                elif campo.lower() in ("descricao","descrição"):
+                     campo="Descrição"
+                     informacao=input("Digite a informação que deseja alterar : ").strip()
+
+                elif campo.lower() == "categoria":
+                     campo="Categoria"
+                     informacao=input("Digite a informação que deseja alterar : ").strip()
+
+                else:  
+                    print("Somente campos válidos ! Use -> Descrição,Valor,Categoria.")
+                    continue
+               
+                dados.despesas[indice][campo]=informacao
+                print(f'''
+                    Informação atualizada : 
+                    {dados.despesas[indice]}
+                ''')
+                break
+            except ValueError:
+                 print("Digite apenas números .")
+            except IndexError:
+                 print("Indice digitado não encontrado ! ")
+
+
+
+
+     
+
+
