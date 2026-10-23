@@ -90,7 +90,7 @@ def editar_despesas():
                 campo=input("Qual informação ? ").strip()
                 if campo.lower() == "valor":
                      campo="Valor"            
-                     informacao=float(input("Digite a informação que deseja alterar : "))
+                     informacao=float(input("Digite a informação que deseja inserir : "))
 
                 elif campo.lower() in ("descricao","descrição"):
                      campo="Descrição"
@@ -113,11 +113,34 @@ def editar_despesas():
             except ValueError:
                  print("Digite apenas números .")
             except IndexError:
-                 print("Indice digitado não encontrado ! ")
+                 print("Índice digitado não encontrado ! ")
 
 
 
+def excluir_despesa():
+     if len(dados.despesas) == 0 :
+          print("Sem despesas cadastradas !")
+          return
+     else:
+          for c , item in enumerate(dados.despesas):
+               print(f"Índice -> {c} | Despesa {item['Descrição']} , {item['Valor']} , {item['Categoria']}")
 
-     
+          while True :
+                try:
+                        indice=int(input("Digite o índice : "))
+                        if indice < 0 or indice >=  len(dados.despesas):
+                             print("Indice inválido.")
+                             continue
 
+                        
+                        dados.despesas.pop(indice)
+                        break
 
+                except ValueError:
+                        print("Digite somente números !")
+                except IndexError:
+                        print("indice inválido.")
+                
+
+                        
+            

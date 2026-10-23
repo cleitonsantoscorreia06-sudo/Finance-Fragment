@@ -15,6 +15,7 @@ while True :
             2-Adicionar Receitas
             3-Relatório Financeiro
             4-Editar Despesas
+            5-Excluir Despesa
 ''')
     
     opcao=input("Digite o número da opção escolhida : ").strip()
@@ -37,6 +38,10 @@ while True :
         print("Finance-Fragment Fechado.")
         break
 
+    elif opcao=="5":
+        funcoes.excluir_despesa()
+        input()
+    
     else:
         print("Opção inválida .")
         input()
