@@ -142,5 +142,50 @@ def excluir_despesa():
                         print("indice inválido.")
                 
 
-                        
-            
+def editar_receita():
+     if len(dados.receitas) == 0 :
+          print("Nenhuma receita foi colocada .")
+          return
+    
+     for c,s in enumerate(dados.receitas):
+          print(f'Indice : {c} -> {s}')
+        
+     while True:
+        try:
+            indice=int(input('Digite o índice : '))
+            if indice < 0 or indice >=len(dados.receitas):
+                 print("Indice inválido .")
+                 continue
+            valor=float(input("Novo valor R$ : "))
+            dados.receitas[indice]=valor
+            print(f"Atualizado ✅ ")
+            break
+
+        except IndexError:
+            print("Erro de Index .")
+
+        except ValueError:
+            print("Digite números e letras nos campos adequados .")
+
+def excluir_receita():
+     if len(dados.receitas) == 0:
+          print("Sem receitas .")
+          return
+     for c , s in enumerate(dados.receitas):
+          print(f"Indice {c} -> {s}")
+     while True:
+          try:
+               exclusao=int(input("Digite o indice : "))
+               if exclusao < 0 or exclusao >= len(dados.receitas):
+                    print("index inválido . ")
+                    continue
+               
+               dados.receitas.pop(exclusao)
+               print(f"Excluido ✅ ")
+               break
+
+
+          except IndexError:
+               print("Indice inválida . ")
+          except ValueError:
+               print("Digite somente números ou palavras em seus respectivos campos.")
