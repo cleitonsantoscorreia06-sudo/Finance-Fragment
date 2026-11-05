@@ -1,10 +1,13 @@
 import dados
 import funcoes
 
+dados.carregar()
+
 print('Finance Fragment')
 print('SEJA BEM VINDO AO SOFTWARE DE ORGANIZAÇÃO FINANCEIRO MAIS SIMPLES E FUNCIONAL.')
 
-dados.nome=input('Qual é o seu nome : ').strip().title()
+if not dados.nome.strip():
+    dados.nome=input('Qual é o seu nome : ').strip().title()
 
 
 while True :
@@ -37,6 +40,7 @@ while True :
         input()
     
     elif opcao == "0" :
+        dados.salvar()
         print("Finance-Fragment Fechado.")
         break
 

@@ -68,7 +68,7 @@ def mostrar_relatorio():
             else:
                 print(f'Saldo negativo :⚠️  {dados.nome}, atenção você está no vermelho ! ')
             print("."*60)
-
+            input()
 def editar_despesas():
      if len(dados.despesas) == 0:
          print("Sem despesas para editar .")
